@@ -1,0 +1,6 @@
+sudo systemctl start mongod
+
+
+http://localhost:5002/api/moviedb
+
+

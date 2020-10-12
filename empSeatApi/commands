@@ -1,0 +1,40 @@
+sudo systemctl start mongod => start dn services
+
+mongo => start db connection
+
+fuser -n tcp -k 5003 => kill listening port
+
+
+http://localhost:5002/api/v1/news/
+http://localhost:5002/api/v1/news/?title=Dhoni
+http://localhost:5002/api/v1/news/560484a0-91de-49fd-89fc-c245e8bddbaf
+
+
+"newsid "= "00001";
+
+{
+    "source": "sourcedata,",
+    "title": "Dhoni",
+    "description": "Dhoni retired from cricket",
+    "url": "htttp://indianexpress.com",
+    "author": "vinoth",
+    "urlToImage": "img:20.jpg",
+    "publishedAt": "28-04-2020",
+    "content": "sports",
+	"user": "vinothG"
+}
+
+{
+    "source": "sourcedata,",
+    "title": "Corona,
+    "description": "corono cases increased day by day",
+    "url": "htttp://timesofindia.com",
+    "author": "vinoth",
+    "urlToImage": "img:20.jpg",
+    "publishedAt": "28-04-2020",
+    "content": "general",
+	"user": "vinothG"
+}
+
+
+

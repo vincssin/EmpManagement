@@ -1,0 +1,30 @@
+User:
+
+http://localhost:8102/api/emp/user/register
+{
+    "username": "user3",
+    "email": "ihor@ssss.com",
+    "password": "password",
+}
+
+
+
+http://localhost:8102/api/emp/user/login
+
+{
+	"username" : "user3",
+	"password" :"password"
+}
+
+http://localhost:8102/api/emp/user/isAuthorized
+
+--Authorization Header
+
+http://localhost:8102/api/emp/user/get
+
+--Authorization Header
+
+
+
+
+
