@@ -81,6 +81,7 @@ public class UserService {
 				User savedUser = userRepository.save(loginUser);
 				map.put("message", "Login successfully");
 				map.put("token", tokenService.createToken(savedUser.getId()));
+				map.put("role", savedUser.getRole());
 			} else {
 				map.put("message", "Invalid Username or Password");
 			}

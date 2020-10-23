@@ -3,5 +3,5 @@ const config = require('../config');
 
 
 app.listen(config.port,() => {
-    console.log(`NewsApp_db MicroService is running at port ${config.port}`);
+    console.log(`empSeatApi MicroService is running at port ${config.port}`);
 })

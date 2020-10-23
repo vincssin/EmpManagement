@@ -60,7 +60,7 @@ public class TokenService {
 			exception.printStackTrace();
 			System.out.println("2222222222222"+exception.getMessage());
 			map.put("status", "Failed");
-			map.put("message", "Access denied");
+			map.put("message", "Access denied-Invalid token");
 			if(exception.getMessage().contains("The Token has expired ")) {
 				map.put("message", exception.getMessage());
 			}else if(exception.getMessage().contains("Signature resulted invalid")) {

@@ -25,6 +25,8 @@
     "nodemon": "^2.0.4",
     "promise": "^8.1.0",
     "supertest": "^4.0.2",
+    "swagger-jsdoc": "^4.3.0",
+    "swagger-ui-express": "^4.1.4",
     "uuid": "^8.3.0"
   },
   "devDependencies": {

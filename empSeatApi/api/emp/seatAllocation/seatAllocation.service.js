@@ -62,6 +62,9 @@ const getAllSeats = (req, res) => {
 }
 
 const secureRoute =  (req, res, routFunc) => {
+    
+    console.log('AUTHORIZED HEADER: '+req.get('header'))
+    if(req.get('Authorization')){
     getAuthUser(req.get('Authorization'),true).then((value) => {
         console.log('Response Message: '+value);
         if(value === 'success'){
@@ -103,12 +106,16 @@ const secureRoute =  (req, res, routFunc) => {
         }else{
             // var isMsg = value.includes("message");
             if(typeof value === 'string'){
-                res.send({ message: value});
+                res.status(401).send({ message: value});
             }else{
-                res.send(value);
+                res.status(400).send(value);
             }
         }
       })
+    }else{
+        res.status(401).send({ message: 'Authentication Failed: Authorization header not found Please check and try again'});
+    }
+    
 }
 
 
@@ -126,11 +133,11 @@ const getAuthUser = async (token, checkUser) => {
                     isAuth =true;
                     msg="success";
                 } else {
-                    console.log('Not a Authenticated user'+data1);
+                    console.log('unauthorized user '+data1);
                     msg=data1;
                 }
             }).catch(error => {
-                msg="fail"
+                msg="Authentication Failed - Ivalid token or authentication server failed to start"
                 console.log("ERROR111: " + error);
             });
 

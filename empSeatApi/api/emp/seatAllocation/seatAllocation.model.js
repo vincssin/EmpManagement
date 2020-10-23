@@ -13,7 +13,7 @@ const seatSchema = new Schema({
     empid: String,
     isAllocated: Boolean,
     empdetails: Map,
-    updatedAt: String
+    updatedAt: String,
 }
 // },
 // { timestamps: true }

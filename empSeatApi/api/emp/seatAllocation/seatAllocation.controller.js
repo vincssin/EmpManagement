@@ -276,7 +276,7 @@ const GetAllSeats =  (req, res) => {
             res.send({ error: err });
         } else if (docs) {
 
-            res.send({ Seats: [docs] });
+            res.send({ seats: docs });
         } else {
             res.send({ message: 'Data not found' });
         }

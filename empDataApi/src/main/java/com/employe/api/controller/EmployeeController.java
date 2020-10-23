@@ -15,19 +15,21 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.employe.api.model.Employee;
 import com.employe.api.service.Employeeservice;
-
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/")
 public class EmployeeController {
@@ -55,7 +57,7 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/addall", method = RequestMethod.POST)
 //    @PostMapping(value= "/addall")
-	public String create(@RequestBody List<Employee> emp) {
+	public String create(@RequestBody List<Employee> emp,@RequestHeader("Authorization") String authHeader) {
 		logger.debug("Saving employees.");
 		empService.createEmployees(emp);
 		return "Employee records created.";
@@ -63,7 +65,7 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST,  produces = MediaType.APPLICATION_JSON_VALUE)
 //  @PostMapping(value= "/addall")
-	public Object create(@RequestBody Employee emp) {
+	public Object create(@RequestBody Employee emp, @RequestHeader("Authorization") String authHeader) {
 		logger.debug("Saving employees.");
 		
 		return empService.createEmployee(emp);
@@ -71,8 +73,9 @@ public class EmployeeController {
 
 	/**Method to fetch all employees from the db.*/
 //    @GetMapping(value= "/getall")
+
 	@RequestMapping(value = "/getall", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE) //
-	public Object getAll() {
+	public Object getAll(@RequestHeader("Authorization") String authHeader) {
 		logger.debug("Getting all employees.");
 		Collection<Employee> obj = empService.getAllEmployees();
 		if(obj.isEmpty()) {
@@ -95,7 +98,7 @@ public class EmployeeController {
 	 * @return
 	 */
 	@GetMapping(value = "/get/{employee-id}")
-	public Object getById(@PathVariable(value = "employee-id") String id) {
+	public Object getById(@PathVariable(value = "employee-id") String id, @RequestHeader("Authorization") String authHeader) {
 		logger.debug("Getting employee with employee-id= {}.", id);
 		return empService.findEmployeeByempId(id);
 	}
@@ -108,7 +111,7 @@ public class EmployeeController {
 	 * @return
 	 */
 	@PutMapping(value = "/update/{employee-id}")
-	public Object update(@PathVariable(value = "employee-id") String id, @RequestBody Employee e) {
+	public Object update(@PathVariable(value = "employee-id") String id, @RequestBody Employee e,@RequestHeader("Authorization") String authHeader) {
 		logger.debug("Updating employee with employee-id= {}.", id);
 //		e.setEmpId(id);
 		
@@ -122,7 +125,7 @@ public class EmployeeController {
 	 * @return
 	 */
 	@DeleteMapping(value = "/delete/{employee-id}")
-	public Object delete(@PathVariable(value = "employee-id") String id) {
+	public Object delete(@PathVariable(value = "employee-id") String id,@RequestHeader("Authorization") String authHeader) {
 		logger.debug("Deleting employee with employee-id= {}.", id);
 		
 //		return "Employee record for employee-id= " + id + " deleted.";
@@ -136,7 +139,7 @@ public class EmployeeController {
 	 * @return
 	 */
 	@DeleteMapping(value = "/deleteall")
-	public String deleteAll() {
+	public String deleteAll(@RequestHeader("Authorization") String authHeader) {
 		logger.debug("Deleting all employees.");
 		empService.deleteAllEmployees();
 		return "All employee records deleted.";
